@@ -1,0 +1,23 @@
+@startuml
+actor User
+actor FB
+actor FMP
+
+User -> FB: Yêu cầu truy xuất dữ liệu kèm với mã KH
+FB -> FMP: Gọi API với mã KH kèm theo sessionKey 
+alt sessionKey tồn tại và chưa hết hạn 
+    FMP --> FB: Trả về kết quả
+    FB --> User: Hiển thị kết quả cho user
+else sessionKey không tồn tại hoặc đã hết hạn
+    FMP --> FB: Yêu cầu chứng thực OTP
+    FB --> User: Yêu cầu nhập SĐT 
+    User -> FB: Nhập SĐT
+    FB -> FMP: Yêu cầu gửi OTP về SĐT yêu cầu
+    FMP -> User: Gửi mã OTP qua SMS
+    ...
+    User -> FB: Nhập mã OTP
+    FB -> FMP: Gửi mã OTP
+    FMP --> FB: Trả kết quả
+end 
+
+@enduml
