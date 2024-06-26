@@ -84,7 +84,7 @@
         "text": "Doanh số của bạn là 364.323.000 VND"
       }
     ],
-"actions": []
+    "actions": []
   }
 }
 ```
